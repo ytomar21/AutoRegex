@@ -39,6 +39,10 @@ class GraphGenerator:
         self.adjectiveCount = 0
         self.adverbialCount = 0
 
+
+    #generateGraph():
+    #   Input: Rubric Csv File
+    #   Output: Word Order Graph
     def generateGraph(self, file):
         begin = round(time.time() * 1000)
 
@@ -463,7 +467,10 @@ class GraphGenerator:
 
 
 
-
+    #replaceApostrophes():
+    #   Input: text
+    #   Output: text with all contractions moved to their full form
+    #           this removes the need of apostrophes
     def replaceApostrophes(self, text):
         text = text.replace("'s", " is")
         text = text.replace("'d", " could")
@@ -478,6 +485,11 @@ class GraphGenerator:
         return text
 
 
+    # searchVertices():
+    #   Input:  list of vertices
+    #           token string of vertex you want to find
+    #           sentence index (which sentence the vertex is in)
+    #   Output: vertex with matching str and index
     def searchVertices(self, list, str, index):
         for vertex in list:
             #print(f'Vertex: {vertex.name.lower()} in vertex list')
@@ -487,6 +499,12 @@ class GraphGenerator:
 
         return None
 
+    # getVertex()
+    #   Input:  list of vertices
+    #           token string of vertex you want to find
+    #           sentence index (which sentence the vertex is in)
+    #   Output: vertex with matching str and index
+    #           unlike searchVertices(), getVertex() will nullify all vertices containing the token string
     def getVertex(self, list, str, index):
         pos = 0
         flag = 0
@@ -512,7 +530,12 @@ class GraphGenerator:
         else:
             return None
 
-
+    # searchEdges()
+    #   Input: list of edges
+    #          inVertex of edge you want to find
+    #          outVertex of edge you want to find
+    #          sentence index
+    #   Output: Returns the edge position
     def searchEdges(self, list, inVertex, outVertex, index):
         edgePos = -1
 
@@ -551,6 +574,12 @@ class GraphGenerator:
 
         return edgePos
 
+    # searchEdgesToSetNull()
+    #   Input: list of edges
+    #          inVertex of edge you want to find
+    #          outVertex of edge you want to find
+    #          sentence index
+    #   Output: Returns the edge position
     def searchEdgesToSetNull(self, list, inVertex, outVertex, index):
         edgePos = -1
 
@@ -570,8 +599,12 @@ class GraphGenerator:
 
         return edgePos
 
-    #Function sets semantic labels for edges - copied implementation from Lakshmi, however it looks inefficient
-    # Also semantic labeling doesn't even seem to be used in the algorithm, what is the point of storing this info?
+    # setSemanticLablesForEdges()
+    #   Input: list of vertices
+    #          list of edges
+    #   Output: No output
+    #           Function sets semantic labels for edges - copied implementation from Lakshmi, however it looks inefficient
+    #           Also semantic labeling doesn't even seem to be used in the algorithm, what is the point of storing this info?
     def setSemanticLabelsForEdges(self, vertices, edges):
 
         for vertex in vertices:
