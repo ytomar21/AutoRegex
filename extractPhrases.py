@@ -18,7 +18,9 @@ class ExtractPhrase:
 
         for edge in graphGen.edges:
             if edge != None:
-                rubricPhrases.append(edge)
+                rubricPhrases.append(edge.inVertex.name + " " + edge.outVertex.name)
                 print(f"Edge: {[edge.inVertex.name, edge.outVertex.name, edge.name, edge.label]}")
 
         print(f'Num of Phrases: {len(rubricPhrases)}')
+
+        return rubricPhrases

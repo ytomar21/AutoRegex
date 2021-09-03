@@ -6,6 +6,7 @@
 import csv
 
 from extractPhrases import ExtractPhrase
+from util import elimStopWords, replaceStopWords
 
 #import nltk
 #nltk.download('wordnet')
@@ -25,15 +26,24 @@ def main():
 
     with open('Data/topscorers.csv', newline='') as topScorerFile:
         topScorerReader = csv.reader(topScorerFile)
-        topScorerSegment = [row[0] for row in topScorerReader]
+        topScorerSegments = [row[0] for row in topScorerReader]
 
     #print(f'topScorerSegment: {topScorerSegment}')
 
     # Step 2: Extract Long Phrases from the Text (Generate edges for word order graph)
     phraseExtractor = ExtractPhrase(rubricSegments)
-    phraseExtractor.extractPhrasesFromText()
+    rubricPhrases = phraseExtractor.extractPhrasesFromText()
+
+    print("Rubric Segments: ", rubricSegments)
+    print("Rubric Phrases: ", rubricPhrases)
 
     # Step 3: Eliminate Stop-Words
+    rubricSegments = elimStopWords(rubricSegments)
+    #topScorerSegment = elimStopWords(topScorerSegments)
+    rubricPhrases = replaceStopWords(rubricPhrases)
+
+    print("Rubric Segments: ", rubricSegments)
+    print("Rubric Phrases: ", rubricPhrases)
 
     # Step 4: Tokenize Rubric and Top-Scorer Text
 

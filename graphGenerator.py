@@ -64,10 +64,10 @@ class GraphGenerator:
                 labels = [tok.dep_ for tok in doc]
                 parents = [tok.head for tok in doc]
 
-                print(f'tokenized: {tokenized}')
-                print(f'tagger: {tagger}')
-                print(f'labels: {labels}')
-                print(f'parents: {parents}')
+                #print(f'tokenized: {tokenized}')
+                #print(f'tagger: {tagger}')
+                #print(f'labels: {labels}')
+                #print(f'parents: {parents}')
 
                 prevType = -1
                 nouns = []
