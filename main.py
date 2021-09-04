@@ -18,7 +18,7 @@ def main():
     #print(syns[0].name())
 
     # Step 1: Get Rubric Text and Top Scorer Text
-    with open('Data/rubric-data-temp.csv', newline='') as rubricFile:
+    with open('Data/rubric-data-temp.csv_orig', newline='') as rubricFile:
         rubricReader = csv.reader(rubricFile)
         rubricSegments = [row[0] for row in rubricReader]
 
