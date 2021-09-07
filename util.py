@@ -57,6 +57,8 @@ def replaceStopWords(text):
 def elimStopWords(text):
 
     outList = []
+    nlp = spacy.load('en_core_web_trf')
+
     for seg in text:
         stemmedDoc = ""
         if seg != None:
@@ -72,7 +74,6 @@ def elimStopWords(text):
             seg = seg.replace("[(]", "")
             seg = seg.replace("[)]", "")
 
-            nlp = spacy.load('en_core_web_trf')
             doc = nlp(seg)
             doc = [tok.text for tok in doc]
 
@@ -111,3 +112,30 @@ def isStopWordOrFrequentWord(text):
         return True
 
     return False
+
+def tokenizeText(text):
+    nlp = spacy.load('en_core_web_trf')
+    tokText = []
+
+    for seg in text:
+        doc = nlp(seg)
+        doc = [tok.text for tok in doc]
+
+        tokText.append(doc)
+
+    return tokText
+
+def frequentToken(text):
+    tokenMap = []
+
+    for sentence in text:
+        sentenceMap = {}
+        for tok in sentence:
+            if(sentenceMap.get(tok) != None):
+                sentenceMap[tok] += 1
+            else:
+                sentenceMap[tok] = 1
+
+        tokenMap.append(sentenceMap)
+
+    return tokenMap
