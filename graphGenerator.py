@@ -49,15 +49,15 @@ class GraphGenerator:
         print("Inside generateGraph()")
 
         nlp = spacy.load('en_core_web_trf')
+        print(f"nlp: {nlp}")
 
         ansCount = 0
         for ans in file:
             #Check is answer is not empty
             if ans.strip() or ans.strip() != "":
                 ans = self.replaceApostrophes(ans)
-                #print(f'ans: {ans}')
                 doc = nlp(ans)
-
+                print(f'Doc: {doc}')
                 # Create a POS tagger for the tokenized text
                 tokenized = [tok for tok in doc]
                 tagger = [tok.pos_ for tok in doc]

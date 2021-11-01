@@ -4,6 +4,8 @@ from stopwords import Stopwords
 
 def replaceStopWords(text):
 
+    print("replaceStopWords()")
+
     outList = []
     for seg in text:
         stemmedDoc = ""
@@ -20,9 +22,8 @@ def replaceStopWords(text):
             seg = seg.replace("[(]", "")
             seg = seg.replace("[)]", "")
 
-            nlp = spacy.load('en_core_web_trf')
-            doc = nlp(seg)
-            doc = [tok.text for tok in doc]
+            seg.strip()
+            doc = seg.split()
 
             stemmer = PorterStemmer()
 
@@ -56,10 +57,13 @@ def replaceStopWords(text):
 
 def elimStopWords(text):
 
+    print("elimStopWords()")
     outList = []
     nlp = spacy.load('en_core_web_trf')
+    print(f'nlp: {nlp}')
 
     for seg in text:
+        print(f"seg: {seg}")
         stemmedDoc = ""
         if seg != None:
             seg = seg.replace(";", "")
@@ -74,12 +78,15 @@ def elimStopWords(text):
             seg = seg.replace("[(]", "")
             seg = seg.replace("[)]", "")
 
-            doc = nlp(seg)
-            doc = [tok.text for tok in doc]
+            seg.strip()
+            doc = seg.split()
+            print(f'doc: {doc}')
 
             stemmer = PorterStemmer()
+            print("stemmer")
 
             for tok in doc:
+                print(f"tok: {tok}")
                 temp = stemmer.stem(tok)
 
                 if (not isStopWordOrFrequentWord(temp)):
@@ -107,6 +114,7 @@ def elimStopWords(text):
     return outList
 
 def isStopWordOrFrequentWord(text):
+    print("isStopWordOrFrequentWord()")
     if (text in Stopwords.CLOSED_CLASS_WORDS or text in Stopwords.FREQUENT_WORDS
         or text in Stopwords.suffixes):
         return True
@@ -114,28 +122,39 @@ def isStopWordOrFrequentWord(text):
     return False
 
 def tokenizeText(text):
-    nlp = spacy.load('en_core_web_trf')
+    print("tokenize()")
+    #nlp = spacy.load('en_core_web_trf')
     tokText = []
 
     for seg in text:
-        doc = nlp(seg)
-        doc = [tok.text for tok in doc]
+        seg.strip()
+        doc = seg.split()
 
         tokText.append(doc)
 
     return tokText
 
 def frequentToken(text):
-    tokenMap = []
+    print("frequentToken()")
+    tokenMap = {}
+    freqToken = []
 
-    for sentence in text:
-        sentenceMap = {}
-        for tok in sentence:
-            if(sentenceMap.get(tok) != None):
-                sentenceMap[tok] += 1
-            else:
-                sentenceMap[tok] = 1
+    for tok in text:
+        if(tokenMap.get(tok) != None):
+            #print("HI")
+            tokenMap[tok] += 1
+            #print("hi 2")
+        else:
+            #print("Bye")
+            tokenMap[tok] = 1
+            #print("bye 2")
 
-        tokenMap.append(sentenceMap)
+    tokenMap = dict(sorted(tokenMap.items(), key=lambda x: -x[1]))
+    avgCount = sum(tokenMap.values())/len(tokenMap)
 
-    return tokenMap
+    for tok in tokenMap:
+        if tokenMap[tok] >= avgCount:
+            freqToken.append(tok)
+
+    return freqToken
+

@@ -1,0 +1,28 @@
+byzantin empir
+empir trade
+trade sugar but
+sugar but mai (\\w{0-4}\\s){0-1}
+mai (\\w{0-4}\\s){0-1} also
+sugar but (\\w{0-4}\\s){0-1}
+us gold cotton (\\w{0-4}\\s){0-1} grain (\\w{0-4}\\s){0-1} trade empir
+us also
+gold cotton (\\w{0-4}\\s){0-2} grain (\\w{0-4}\\s){0-2} trade empir need (\\w{0-4}\\s){0-2}
+need (\\w{0-4}\\s){0-2} resourc (\\w{0-4}\\s){0-2} thei
+resourc (\\w{0-4}\\s){0-1} thei must (\\w{0-4}\\s){0-1} felt
+other region thing thei
+must (\\w{0-4}\\s){0-1} felt region thing thei
+region thing thei need (\\w{0-4}\\s){0-2}
+need (\\w{0-4}\\s){0-2} thei
+thei (\\w{0-4}\\s){0-2}
+did (\\w{0-4}\\s){0-1} access (\\w{0-4}\\s){0-1} region thei
+access (\\w{0-4}\\s){0-1} region thei trade
+trade wool silk leather honei fur wood (\\w{0-4}\\s){0-1}
+trade justinian
+justinian conquer
+more easili land
+conquer land
+land make
+land access
+access resourc europ (\\w{0-4}\\s){0-1}
+upper western africa
+access africa
