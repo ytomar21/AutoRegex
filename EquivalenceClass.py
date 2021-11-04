@@ -25,11 +25,13 @@ class GenerateEquivalenceClass:
 
             if not classOfWords in tokenClass:
                 tokenClass.append(classOfWords)
+                print("tokenClass: ", tokenClass)
 
         concatListOfTok = ""
         grams = 0
 
         for tokClass in tokenClass:
+            print("tokClass: ", tokenClass)
             if not tokClass in finalListOfTokenClasses:
                 if len(tokClass) > 1:
                     finalListOfTokenClasses.append(tokClass)
@@ -73,7 +75,10 @@ class GenerateEquivalenceClass:
             tokenClass.append("$$$")
             return tokenClass
 
-        tokenClass.add(token)
+        print("token: ", token)
+        print("topscorers: ", topscorers)
+        tokenClass = token
+        print("updated tokenClass: ", tokenClass)
         wn = WordnetBasedSimilarity()
         s = PorterStemmer()
         #tokenSyns = [] - doesn't even use synonyms
@@ -83,13 +88,15 @@ class GenerateEquivalenceClass:
                 sttop = tokenizeText(token)
 
                 for tok in sttop:
-                    match, tokenSyns = wn.compareString(token, tok, self.nlp)
+                    match = wn.compareString(token, tok, self.nlp)
 
                     if match >= self.treshold:
                         stemText = s.stem(tok)
+                        print("stemText: ", stemText)
 
                         if not (stemText in tokenClass):
-                            tokenClass.append(stemText)
+                            tokenClass += " " + stemText
 
+        print("tokenClass: ", tokenClass)
         return tokenClass
 

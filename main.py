@@ -17,11 +17,11 @@ def main():
     # Initialize word net library, pos tagger, parser for graph generation
 
     # Step 1: Get Rubric Text and Top Scorer Text
-    with open('Data/rubric-data-temp.csv', newline='') as rubricFile:
-        rubricReader = csv.reader(rubricFile)
-        rubricSegments = [row[0] for row in rubricReader]
+    with open('Data/Data Set #1--ReadMeFirst.txt', newline='', encoding="latin-1") as rubricFile:
+        #rubricReader = csv.reader(rubricFile)
+        rubricSegments = [row for row in rubricFile]
 
-    #print(f'rubricSegments: {rubricSegments}')
+    print(f'rubricSegments: {rubricSegments}')
 
     with open('Data/topscorers.csv', newline='') as topScorerFile:
         topScorerReader = csv.reader(topScorerFile)
@@ -54,6 +54,7 @@ def main():
 
     # Step 6: Identify equivalence classes for the tokens in the rubric text
     equivalenceClassGen = GenerateEquivalenceClass()
+    finalListOfTokenClasses = []
     for tokens in rubricTok:
         finalListOfTokenClasses = equivalenceClassGen.identifyClassOfWords(tokens, topScoringTokens, finalListOfTokenClasses)
     print("equivalence class generated")

@@ -19,6 +19,7 @@ class WordnetBasedSimilarity:
         review = word1
         submission = word2
         print("compareString")
+
         revTok = nlp(review)
         print(f"revTok: {revTok[0].pos_}")
         posRev = revTok[0].pos_
@@ -36,11 +37,21 @@ class WordnetBasedSimilarity:
 
         subPos = self.determinePos(posRev)
 
+        if subPos == -1 or reviewPos == -1:
+            return -1
+
         print(f"review:{review}")
         print(f"reviewPos: {reviewPos}")
         print(f"submission: {submission}")
-        revSynset = wn.synset(review+"."+reviewPos+".01")
-        subSynset = wn.synset(submission+"."+subPos+".01")
+        try:
+            revSynset = wn.synset(review+"."+reviewPos+".01")
+        except:
+            return 0
+
+        try:
+            subSynset = wn.synset(submission+"."+subPos+".01")
+        except:
+            return 0
         print(f"revSynset: {revSynset}")
 
         print(f"Lch similarity: {wn.lch_similarity(revSynset, subSynset, simulate_root=False)}")
@@ -51,7 +62,8 @@ class WordnetBasedSimilarity:
         match = 0
         count = 0
 
-        print(wn.synsets("cat"))
+        #print(wn.synsets("cat"))
+        return match
 
     def determinePos(self, str_pos):
         pos = ""
@@ -63,11 +75,9 @@ class WordnetBasedSimilarity:
             pos = "v"
         elif "RB" in str_pos:
             pos = "r"
+        elif "DET" in str_pos:
+            pos = -1
         else:
             pos = "n"
 
         return pos
-
-w = WordnetBasedSimilarity()
-nlp = spacy.load("en_core_web_sm")
-w.compareString("cat", "dog", nlp)

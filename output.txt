@@ -1,28 +1,340 @@
-byzantin empir
-empir trade
-trade sugar but
-sugar but mai (\\w{0-4}\\s){0-1}
-mai (\\w{0-4}\\s){0-1} also
-sugar but (\\w{0-4}\\s){0-1}
-us gold cotton (\\w{0-4}\\s){0-1} grain (\\w{0-4}\\s){0-1} trade empir
-us also
-gold cotton (\\w{0-4}\\s){0-2} grain (\\w{0-4}\\s){0-2} trade empir need (\\w{0-4}\\s){0-2}
-need (\\w{0-4}\\s){0-2} resourc (\\w{0-4}\\s){0-2} thei
-resourc (\\w{0-4}\\s){0-1} thei must (\\w{0-4}\\s){0-1} felt
-other region thing thei
-must (\\w{0-4}\\s){0-1} felt region thing thei
-region thing thei need (\\w{0-4}\\s){0-2}
-need (\\w{0-4}\\s){0-2} thei
-thei (\\w{0-4}\\s){0-2}
-did (\\w{0-4}\\s){0-1} access (\\w{0-4}\\s){0-1} region thei
-access (\\w{0-4}\\s){0-1} region thei trade
-trade wool silk leather honei fur wood (\\w{0-4}\\s){0-1}
-trade justinian
-justinian conquer
-more easili land
-conquer land
-land make
-land access
-access resourc europ (\\w{0-4}\\s){0-1}
-upper western africa
-access africa
+Data
+Set
+#1
+Type
+respon
+Sourc
+Depend
+Respon
+Grade
+level
+10
+Subject
+Scienc
+Train
+set
+size
+1672
+Final
+evalu
+558
+Averag
+length
+50
+word
+Score
+Score1
+Score2
+score
+1.
+for
+inter-rat
+reliabl
+purposes.
+@@ 1. @@ 2 @@ for @@ inter-rat @@ reliabl
+Rubric
+rang
+0-3
+PromptÑAcid
+Rain
+group
+student
+wrote
+follow
+procedur
+investigation.
+@@ group @@ student @@ wrote @@ follow @@ procedur
+Procedur
+Determin
+mass
+four
+differ
+samples.
+2.
+Pour
+vinegar
+each
+separ
+but
+@@ 2. @@ Pour @@ vinegar @@ each @@ separ
+ident
+containers.
+3.
+Place
+sampl
+on
+materi
+into
+@@ 3. @@ Place @@ sampl @@ on @@ materi
+contain
+label.
+Repeat
+remain
+place
+singl
+@@ contain @@ label. @@ Repeat @@ remain @@ place
+container.
+4.
+After
+24
+hour
+remov
+from
+@@ 4. @@ After @@ 24 @@ hour @@ remov
+rin
+distil
+water.
+5.
+Allow
+sit
+dry
+30
+minutes.
+@@ 5. @@ Allow @@ sit @@ dry @@ 30
+6.
+sample.
+The
+studentsÕ
+data
+ar
+record
+tabl
+@@ The @@ studentsÕ @@ data @@ ar @@ record
+below.
+Sampl
+Start
+Mass
+(g)
+Ending
+Differ
+Marbl
+9.8
+9.4
+Ð0.4
+Limeston
+10.4
+9.1
+Ð1.3
+Wood
+11.2
+0.0
+Plastic
+7.2
+7.1
+Ð0.1
+read
+groupÕ
+describ
+what
+addit
+inform
+@@ read @@ groupÕ @@ describ @@ what @@ addit
+would
+need
+order
+replic
+experiment.
+Make
+@@ would @@ need @@ order @@ replic @@ experiment.
+sure
+includ
+least
+three
+piec
+information.
+@@ sure @@ includ @@ least @@ three @@ piec
+Open-End
+Item
+Open-end
+item
+four-point
+scale
+(0Ð3)
+holist
+@@ Open-end @@ item @@ four-point @@ scale @@ (0Ð3)
+method.
+Thi
+method
+involv
+judg
+over
+@@ method. @@ Thi @@ method @@ involv @@ judg
+qualiti
+response.
+gener
+rubric
+scienc
+open-end
+@@ qualiti @@ response. @@ gener @@ rubric @@ scienc
+(see
+page)
+characterist
+point.
+Include
+content
+@@ (see @@ page) @@ characterist @@ point. @@ Include
+guid
+(descript
+good
+question)
+specif
+point)
+@@ guid @@ (descript @@ good @@ question) @@ specif
+classif
+base
+Framework.
+two
+point
+along
+@@ classif @@ base @@ Framework. @@ two @@ point
+brief
+discuss
+why
+receiv
+particular
+score.
+@@ brief @@ discuss @@ why @@ receiv @@ particular
+Keep
+mind
+criteria
+reason
+expect
+grade
+@@ Keep @@ mind @@ criteria @@ reason @@ expect
+ten
+respond
+under
+test
+conditions.
+Student
+@@ ten @@ respond @@ under @@ test @@ conditions.
+given
+approxim
+five
+minut
+item.
+therefor
+@@ given @@ approxim @@ five @@ minut @@ item.
+polish
+thei
+might
+more
+time
+revi
+@@ polish @@ thei @@ might @@ more @@ time
+answers.
+In
+ask
+wide
+varieti
+scientif
+@@ answers. @@ In @@ ask @@ wide @@ varieti
+topic
+mani
+which
+mai
+not
+studi
+@@ topic @@ mani @@ which @@ mai @@ not
+some
+time.
+All
+thi
+taken
+consid
+@@ some @@ time. @@ All @@ thi @@ taken
+when
+responses.
+Each
+categori
+reflect
+descript
+excel
+answer
+question.
+It
+correct
+complet
+@@ excel @@ answer @@ question. @@ It @@ correct
+appropri
+elabor
+exten
+and/or
+evid
+higher-ord
+@@ appropri @@ elabor @@ exten @@ and/or @@ evid
+think
+relev
+prior
+knowledge.
+There
+misconceptions.
+@@ think @@ relev @@ prior @@ knowledge. @@ There
+Minor
+error
+will
+necessarili
+lower
+profici
+although
+minor
+inaccuraci
+appear.
+limit
+@@ profici @@ although @@ minor @@ inaccuraci @@ appear.
+knowledg
+signif
+these
+trait
+other
+flaw
+@@ knowledg @@ signif @@ these @@ trait @@ other
+(e.g.
+omiss
+inappropriateness)
+minor.
+margin
+While
+element
+inaccur
+incomplet
+inappropriate.
+@@ margin @@ While @@ element @@ inaccur @@ incomplet
+littl
+ani
+though
+possibl
+unsatisfactori
+fail
+address
+question
+@@ though @@ possibl @@ unsatisfactori @@ fail @@ address
+veri
+way.
+seriou
+Acid
+Possibl
+Correct
+Need
+Informat
+You
+know
+how
+much
+wa
+@@ ¥ @@ You @@ know @@ how @@ much
+type
+test.
+size/surfac
+area
+should
+used.
+long
+use.
+size/typ
+Other
+accept
+3-Point
+accur
+acid
+rain

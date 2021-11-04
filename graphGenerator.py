@@ -48,7 +48,7 @@ class GraphGenerator:
 
         print("Inside generateGraph()")
 
-        nlp = spacy.load('en_core_web_trf')
+        nlp = spacy.load('en_core_web_sm')
         print(f"nlp: {nlp}")
 
         ansCount = 0

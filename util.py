@@ -136,18 +136,21 @@ def tokenizeText(text):
 
 def frequentToken(text):
     print("frequentToken()")
-    tokenMap = {}
+    tokenMap = dict()
     freqToken = []
 
-    for tok in text:
-        if(tokenMap.get(tok) != None):
-            #print("HI")
-            tokenMap[tok] += 1
-            #print("hi 2")
-        else:
-            #print("Bye")
-            tokenMap[tok] = 1
-            #print("bye 2")
+    for sentence in text:
+        print("tokenMap: ", type(tokenMap))
+
+        for tok in sentence:
+            if(tokenMap != {} and tokenMap.get(tok) != None):
+                #print("HI")
+                tokenMap[tok] += 1
+                #print("hi 2")
+            else:
+                #print("Bye")
+                tokenMap[tok] = 1
+                #print("bye 2")
 
     tokenMap = dict(sorted(tokenMap.items(), key=lambda x: -x[1]))
     avgCount = sum(tokenMap.values())/len(tokenMap)
