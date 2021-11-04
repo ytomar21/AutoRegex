@@ -4,7 +4,7 @@ from stopwords import Stopwords
 
 def replaceStopWords(text):
 
-    print("replaceStopWords()")
+    #print("replaceStopWords()")
 
     outList = []
     for seg in text:
@@ -57,13 +57,13 @@ def replaceStopWords(text):
 
 def elimStopWords(text):
 
-    print("elimStopWords()")
+    #print("elimStopWords()")
     outList = []
     nlp = spacy.load('en_core_web_trf')
-    print(f'nlp: {nlp}')
+    #print(f'nlp: {nlp}')
 
     for seg in text:
-        print(f"seg: {seg}")
+        #print(f"seg: {seg}")
         stemmedDoc = ""
         if seg != None:
             seg = seg.replace(";", "")
@@ -80,13 +80,13 @@ def elimStopWords(text):
 
             seg.strip()
             doc = seg.split()
-            print(f'doc: {doc}')
+            #print(f'doc: {doc}')
 
             stemmer = PorterStemmer()
-            print("stemmer")
+            #print("stemmer")
 
             for tok in doc:
-                print(f"tok: {tok}")
+                #print(f"tok: {tok}")
                 temp = stemmer.stem(tok)
 
                 if (not isStopWordOrFrequentWord(temp)):
@@ -114,7 +114,7 @@ def elimStopWords(text):
     return outList
 
 def isStopWordOrFrequentWord(text):
-    print("isStopWordOrFrequentWord()")
+    #print("isStopWordOrFrequentWord()")
     if (text in Stopwords.CLOSED_CLASS_WORDS or text in Stopwords.FREQUENT_WORDS
         or text in Stopwords.suffixes):
         return True
@@ -122,7 +122,7 @@ def isStopWordOrFrequentWord(text):
     return False
 
 def tokenizeText(text):
-    print("tokenize()")
+    #print("tokenize()")
     #nlp = spacy.load('en_core_web_trf')
     tokText = []
 
@@ -135,12 +135,12 @@ def tokenizeText(text):
     return tokText
 
 def frequentToken(text):
-    print("frequentToken()")
+    #print("frequentToken()")
     tokenMap = dict()
     freqToken = []
 
     for sentence in text:
-        print("tokenMap: ", type(tokenMap))
+        #print("tokenMap: ", type(tokenMap))
 
         for tok in sentence:
             if(tokenMap != {} and tokenMap.get(tok) != None):

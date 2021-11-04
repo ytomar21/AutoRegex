@@ -17,6 +17,7 @@ def main():
     # Initialize word net library, pos tagger, parser for graph generation
 
     # Step 1: Get Rubric Text and Top Scorer Text
+    print("\nSTEP 1: Get Rubric Text and Top Scorer Text\n")
     with open('Data/Data Set #1--ReadMeFirst.txt', newline='', encoding="latin-1") as rubricFile:
         #rubricReader = csv.reader(rubricFile)
         rubricSegments = [row for row in rubricFile]
@@ -30,6 +31,7 @@ def main():
     #print(f'topScorerSegment: {topScorerSegment}')
 
     # Step 2: Extract Long Phrases from the Text (Generate edges for word order graph)
+    print("\nSTEP 2: Extract Long Phrases from the Text\n")
     phraseExtractor = ExtractPhrase(rubricSegments)
     rubricPhrases = phraseExtractor.extractPhrasesFromText()
 
@@ -37,6 +39,7 @@ def main():
     print("Rubric Phrases: ", rubricPhrases)
 
     # Step 3: Eliminate Stop-Words
+    print("\nSTEP 3: Eliminate Stop-Words\n")
     rubricSegments = elimStopWords(rubricSegments)
     #topScorerSegment = elimStopWords(topScorerSegments)
     rubricPhrases = replaceStopWords(rubricPhrases)
@@ -45,14 +48,17 @@ def main():
     print("Rubric Phrases: ", rubricPhrases)
 
     # Step 4: Tokenize Rubric and Top-Scorer Text
+    print("\nSTEP 4: Tokenize Rubric and Top-Scorer Text\n")
     rubricTok = tokenizeText(rubricSegments)
     topScorerTok = tokenizeText(topScorerSegments)
 
     # Step 5: Select Most Frequent Words Among the Top-Scorer Text and Prompt Texts' Token
+    print("\nSTEP 5: Select Most Frequent Words Among the Top-Scorer Text and Prompt Texts' Token\n")
     #frquencyMap = frequentToken(topScorerTok)
     topScoringTokens = frequentToken(topScorerTok)
 
     # Step 6: Identify equivalence classes for the tokens in the rubric text
+    print("\nSTEP 6: Identify equivalence classes for the tokens in the rubric text\n")
     equivalenceClassGen = GenerateEquivalenceClass()
     finalListOfTokenClasses = []
     for tokens in rubricTok:
@@ -60,6 +66,7 @@ def main():
     print("equivalence class generated")
 
     #Step 7: Write out results and convert into Perl regex format
+    print("\nSTEP 7 (FINAL): Write out results and convert into Perl regex format")
     with open("output.txt", 'w') as csvfile:
         #csvwriter = csv.writer(csvfile)
         for phrase in finalListOfTokenClasses:

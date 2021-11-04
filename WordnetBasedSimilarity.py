@@ -18,12 +18,12 @@ class WordnetBasedSimilarity:
     def compareString(self, word1, word2, nlp):
         review = word1
         submission = word2
-        print("compareString")
+        #print("compareString")
 
         revTok = nlp(review)
-        print(f"revTok: {revTok[0].pos_}")
+        #print(f"revTok: {revTok[0].pos_}")
         posRev = revTok[0].pos_
-        print(f"revPos: {posRev}")
+        #print(f"revPos: {posRev}")
 
         reviewPos = self.determinePos(posRev)
 
@@ -31,18 +31,18 @@ class WordnetBasedSimilarity:
             review = "not"
 
         subTok = nlp(review)
-        print(f"subTok: {subTok[0].pos_}")
+        #print(f"subTok: {subTok[0].pos_}")
         subRev = subTok[0].pos_
-        print(f"subPos: {subRev}")
+        #print(f"subPos: {subRev}")
 
         subPos = self.determinePos(posRev)
 
         if subPos == -1 or reviewPos == -1:
             return -1
 
-        print(f"review:{review}")
-        print(f"reviewPos: {reviewPos}")
-        print(f"submission: {submission}")
+        #print(f"review:{review}")
+        #print(f"reviewPos: {reviewPos}")
+        #print(f"submission: {submission}")
         try:
             revSynset = wn.synset(review+"."+reviewPos+".01")
         except:
@@ -52,11 +52,11 @@ class WordnetBasedSimilarity:
             subSynset = wn.synset(submission+"."+subPos+".01")
         except:
             return 0
-        print(f"revSynset: {revSynset}")
+        #print(f"revSynset: {revSynset}")
 
-        print(f"Lch similarity: {wn.lch_similarity(revSynset, subSynset, simulate_root=False)}")
-        print(f"Wup similarity: {wn.wup_similarity(revSynset, subSynset)}")
-        print(f"Path similarity: {wn.path_similarity(revSynset, subSynset)}")
+        #print(f"Lch similarity: {wn.lch_similarity(revSynset, subSynset, simulate_root=False)}")
+        #print(f"Wup similarity: {wn.wup_similarity(revSynset, subSynset)}")
+        #print(f"Path similarity: {wn.path_similarity(revSynset, subSynset)}")
 
 
         match = 0
