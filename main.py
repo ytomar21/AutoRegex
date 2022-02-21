@@ -6,7 +6,7 @@
 import csv
 
 from extractPhrases import ExtractPhrase
-from util import elimStopWords, replaceStopWords, tokenizeText, frequentToken
+from util import *
 from EquivalenceClass import GenerateEquivalenceClass
 
 #import nltk
@@ -18,13 +18,15 @@ def main():
 
     # Step 1: Get Rubric Text and Top Scorer Text
     print("\nSTEP 1: Get Rubric Text and Top Scorer Text\n")
-    with open('Data/Data Set #1--ReadMeFirst.txt', newline='', encoding="latin-1") as rubricFile:
+    with open('Data/Data Set #9--ReadMeFirst.txt', newline='', encoding="latin-1") as rubricFile:
+    #with open('Data/rubric-data-temp.csv', newline='', encoding="latin-1") as rubricFile:
         #rubricReader = csv.reader(rubricFile)
         rubricSegments = [row for row in rubricFile]
 
     print(f'rubricSegments: {rubricSegments}')
 
-    with open('Data/topscorers.csv', newline='') as topScorerFile:
+    with open('Data/topScorer9.txt', newline='') as topScorerFile:
+    #with open('Data/rubric-data-temp.csv', newline='') as topScorerFile:
         topScorerReader = csv.reader(topScorerFile)
         topScorerSegments = [row[0] for row in topScorerReader]
 
@@ -41,7 +43,7 @@ def main():
     # Step 3: Eliminate Stop-Words
     print("\nSTEP 3: Eliminate Stop-Words\n")
     rubricSegments = elimStopWords(rubricSegments)
-    #topScorerSegment = elimStopWords(topScorerSegments)
+    topScorerSegments = elimStopWords(topScorerSegments)
     rubricPhrases = replaceStopWords(rubricPhrases)
 
     print("Rubric Segments: ", rubricSegments)
@@ -67,6 +69,8 @@ def main():
 
     #Step 7: Write out results and convert into Perl regex format
     print("\nSTEP 7 (FINAL): Write out results and convert into Perl regex format")
+    print("finalListofTokenClasses:", finalListOfTokenClasses)
+    finalListOfTokenClasses = regExConverter(finalListOfTokenClasses)
     with open("output.txt", 'w') as csvfile:
         #csvwriter = csv.writer(csvfile)
         for phrase in finalListOfTokenClasses:

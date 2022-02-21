@@ -332,7 +332,7 @@ class PorterStemmer:
         self.k = j
         self.k0 = i
         if self.k <= self.k0 + 1:
-            return self.b # --DEPARTURE--
+            return self.b, None # --DEPARTURE--
 
         # With this line, strings of length 1 or 2 don't go through the
         # stemming process, although no mention is made of this in the
@@ -345,7 +345,8 @@ class PorterStemmer:
         self.step3()
         self.step4()
         self.step5()
-        return self.b[self.k0:self.k+1]
+        print(f"self.b: {p}")
+        return self.b[self.k0:self.k+1], p[self.k+1:]
 
 
 if __name__ == '__main__':

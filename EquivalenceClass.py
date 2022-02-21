@@ -19,15 +19,16 @@ class GenerateEquivalenceClass:
 
         for rubric in rubricTokens:
             tempToken = rubric
-            stemText = stemmer.stem(tempToken)
-
+            stemText, restText = stemmer.stem(tempToken)
+            #print("stem: ", stemText)
+            #print("restText: ", restText)
             classOfWords = self.getClassOfWords(stemText, topScoringTokens)
 
             if not classOfWords in tokenClass:
                 tokenClass.append(classOfWords)
                 #print("tokenClass: ", tokenClass)
 
-        concatListOfTok = ""
+        concatListOfTok = "@@ "
         grams = 0
 
         for tokClass in tokenClass:
@@ -36,14 +37,17 @@ class GenerateEquivalenceClass:
                 if len(tokClass) > 1:
                     finalListOfTokenClasses.append(tokClass)
                 if grams < 5:
-                    concatListOfTok += " @@ " + tokClass
+                    if len(tokClass) > 1:
+                        concatListOfTok += tokClass + " @@ "
+                    else:
+                        concatListOfTok += tokClass
                     grams += 1
                 elif grams == 5:
                     if not concatListOfTok.strip() in finalListOfTokenClasses:
                         finalListOfTokenClasses.append(concatListOfTok.strip())
 
                     grams = 0
-                    concatListOfTok = ""
+                    concatListOfTok = "@@ "
 
         return finalListOfTokenClasses
 
@@ -57,7 +61,7 @@ class GenerateEquivalenceClass:
 
             if not "(\\\\w{0-4}\\\\s)" in tok:
                 tempToken = tok
-                stemTok = stemmer.stem(tempToken)
+                stemTok, rest = stemmer.stem(tempToken)
 
                 tokClass = self.getClassOfWords(stemTok, topScoringTokens)
 

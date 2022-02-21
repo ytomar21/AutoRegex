@@ -21,6 +21,8 @@ def replaceStopWords(text):
             seg = seg.replace("!", "")
             seg = seg.replace("[(]", "")
             seg = seg.replace("[)]", "")
+            seg = seg.replace("(", "")
+            seg = seg.replace(")", "")
 
             seg.strip()
             doc = seg.split()
@@ -28,7 +30,7 @@ def replaceStopWords(text):
             stemmer = PorterStemmer()
 
             for tok in doc:
-                temp = stemmer.stem(tok)
+                temp, other = stemmer.stem(tok)
 
                 if isStopWordOrFrequentWord(temp) and stemmedDoc != "":
                     stemmedDoc += "(\\\\w{0-4}\\\\s) "
@@ -77,6 +79,8 @@ def elimStopWords(text):
             seg = seg.replace("!", "")
             seg = seg.replace("[(]", "")
             seg = seg.replace("[)]", "")
+            seg = seg.replace("(", "")
+            seg = seg.replace(")", "")
 
             seg.strip()
             doc = seg.split()
@@ -87,7 +91,7 @@ def elimStopWords(text):
 
             for tok in doc:
                 #print(f"tok: {tok}")
-                temp = stemmer.stem(tok)
+                temp, rest = stemmer.stem(tok)
 
                 if (not isStopWordOrFrequentWord(temp)):
                     stemmedDoc += temp + " "
@@ -161,3 +165,37 @@ def frequentToken(text):
 
     return freqToken
 
+def regExConverter(tokens):
+
+    for i in range(len(tokens)):
+        if tokens[i] != None:
+            print("tokens[i]: ", tokens[i])
+            tokens[i] = tokens[i].replace("} ", "}")
+            tokens[i] = tokens[i].replace(") ", ")")
+            tokens[i] = tokens[i].replace("] ", "]")
+            tokens[i] = tokens[i].replace(", ", "|")
+
+            if not ("$$$" in tokens[i]):
+                if " @@ " in tokens[i]:
+                    tokens[i] = tokens[i].replace(" @@ ", ")\\b.*)(?=.*\\b(")
+                if "][" in tokens[i]:
+                    tokens[i] = tokens[i].replace("][", ")\\b.*)(?=.*\\b(")
+                if "@@ " in tokens[i]:
+                    tokens[i] = tokens[i].replace("@@ ", "(?=.*\\b(")
+                if " @@" in tokens[i]:
+                    tokens[i] = tokens[i].replace(" @@", ")\\b.*)")
+                tokens[i] = tokens[i].replace("]", ")\\b.*)")
+                tokens[i] = tokens[i].replace("[", "(?=.*\\b(")
+            else:
+                if " @@ " in tokens[i]:
+                    tokens[i] = tokens[i].replace(" @@ ", ")(")
+                if "][" in tokens[i]:
+                    tokens[i] = tokens[i].replace("][", ")\\b(\\s)*(")
+                if "@@ " in tokens[i]:
+                    tokens[i] = tokens[i].replace("@@ ", "(")
+                tokens[i] = tokens[i].replace("]", ")\\b)")
+                tokens[i] = tokens[i].replace("[", "\\b(")
+                tokens[i] = tokens[i].replace("($$$)", "(\\w{0-4})?(\\s)?")
+            tokens[i] = "(?=.*(" + tokens[i] + ").*)"
+
+    return tokens
